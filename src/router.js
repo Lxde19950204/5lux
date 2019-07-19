@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import My from './views/My.vue'
+import Container from './views/container.vue'
 Vue.use(Router)
 
 let AboutView=() => import('./views/About.vue')
@@ -19,9 +20,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name:'home',
-      component:Home,
+      redirect:{name:"home"},
+      component:Container,
       children:[
+        {
+          path:"/home",
+          name:"home",
+          component:Home
+        },
         {
           path:"/shop",
           name:"shop",
