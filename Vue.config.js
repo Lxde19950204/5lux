@@ -1,0 +1,20 @@
+module.exports={
+    devServer:{
+       proxy:{
+           "/5lux":{
+               "target":"https://apim.restful.5lux.com.cn",
+               "changeOrigin":true,
+               "pathRewrite":{
+                   "^/5lux":"/"
+               }
+           },
+           "/mogujieList":{
+               "target":"https://api.mogu.com",
+               "changeOrigin":true,
+               "pathRewrite":{
+                   "^/mogujieList":"/"
+               }
+           }
+       } 
+    } 
+ }

@@ -2,18 +2,19 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import My from './views/My.vue'
-import Container from './views/container.vue'
+import Container from './views/Container.vue'
 Vue.use(Router)
 
 let AboutView=() => import('./views/About.vue')
 let Shopview=()=> import('./views/Shop.vue')
 let OverseasView =() => import('./views/Overseas.vue')
+let OverseaServiceView=()=>import('./views/OverseaService.vue')
 let StoreView = () => import('./views/Store.vue')
 let IndexView = () => import ('./views/overseas/index.vue');
 let DetailView = () => import('./views/Detail.vue');
 let ListView =()=>import('./views/detail/list.vue');
-
-
+let BrandView=()=>import('./views/Brand.vue')
+let BrandDetailView=()=>import("./views/BrandDetail.vue")
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -41,25 +42,21 @@ export default new Router({
       ]
     },
     {
-      path:"/overseas",
-      name:"overseas",
+      path:"/overseaservice",
+      name:"overseaservice",
       redirect:{name:"index"},
-      component:OverseasView,
+      component:OverseaServiceView,
       children:[
         {
-          path:"/overseas/index",
+          path:"/overseaservice/index",
           name:"index",
           component:IndexView
         },
         {
-          path:"/overseas/items"
+          path:"/overseaservice/items"
         },
         {
-          path:"/overseas/countries"
-        },
-        {
-          path:"/overseas/my",
-          redirect:{name:'my'}
+          path:"/overseaservice/countries"
         }
       ]
     },
@@ -85,6 +82,17 @@ export default new Router({
         }
       ]
     },
-    
+    {
+        path:"/brand",
+        component:BrandView,
+    },
+    {
+        path:"/brand/detail/:type",
+        component:BrandDetailView
+    },
+    {
+        path:"/overseas",
+        component:OverseasView
+    }
   ]
 })
